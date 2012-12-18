@@ -29,6 +29,8 @@ namespace KaLib.WinForm
 			/// 色関係
 			mainForm.BackColor = KaWinDefVals.BgColor;
 			mainForm.ForeColor = KaWinDefVals.ForeColor;
+			/// ウィンドウ関係
+			mainForm.FormBorderStyle = FormBorderStyle.FixedToolWindow;
 		}
 	}
 }

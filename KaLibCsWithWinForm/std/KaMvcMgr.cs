@@ -34,9 +34,9 @@ namespace KaLib.WinForm
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault( false );
 
-			var m = Activator.CreateInstance( typeof( KaModel ) ) as KaModel;
-			var v = Activator.CreateInstance( typeof( KaView ) ) as KaView;
-			var c = Activator.CreateInstance( typeof( KaController ) ) as KaController;
+			var m = Activator.CreateInstance( typeDic[ "KaModel" ] ) as KaModel;
+			var v = Activator.CreateInstance( typeDic[ "KaView" ] ) as KaView;
+			var c = Activator.CreateInstance( typeDic[ "KaController" ] ) as KaController;
 			KaMvcBase.setMvc( m, v, c );
 
 			var mInit = m.GetType().GetMethod( "init", BindingFlags.Instance | BindingFlags.NonPublic );

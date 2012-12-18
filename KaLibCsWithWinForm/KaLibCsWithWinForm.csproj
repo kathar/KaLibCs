@@ -48,6 +48,7 @@
     <Compile Include="std\KaModel.cs" />
     <Compile Include="std\KaMvcBase.cs" />
     <Compile Include="std\KaMvcMgr.cs" />
+    <Compile Include="std\KaResource.cs" />
     <Compile Include="std\KaView.cs" />
     <Compile Include="std\KaController.cs" />
     <Compile Include="std\KaWinDefVals.cs" />
