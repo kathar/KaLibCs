@@ -11,25 +11,25 @@ namespace KaLib.WinForm
 	/// </summary>
 	public class KaMvcBase
 	{
-		protected static KaModel model { get; private set; }
-		protected static KaView view { get; private set; }
-		protected static KaController controller { get; private set; }
+		public static KaModel m;
+		public static KaView v;
+		public static KaController c;
 
 		/// <summary>
 		/// MVC インスタンスをセット。<br />
-		/// インスタンスは各 MVC クラスで共有される。
+		/// インスタンスは各クラスで共有される。
 		/// </summary>
-		/// <param name="m"></param>
-		/// <param name="v"></param>
-		/// <param name="c"></param>
+		/// <param name="model"></param>
+		/// <param name="view"></param>
+		/// <param name="controller"></param>
 		public static void setMvc(
-			KaModel m,
-			KaView v,
-			KaController c )
+			KaModel model,
+			KaView view,
+			KaController controller )
 		{
-			model = m;
-			view = v;
-			controller = c;
+			m = model;
+			v = view;
+			c = controller;
 		}
 
 		/// <summary>

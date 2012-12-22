@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace KaLib.WinForm
 {
 	/// <summary>
-	/// Windows Form アプリを MVC パターンで構築する際、<br />
+	/// Windows Form アプリで MVC パターンで構築する際、<br />
 	/// Model はこのクラスを継承すること。
 	/// </summary>
 	public class KaModel : KaMvcBase
