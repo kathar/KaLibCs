@@ -34,17 +34,18 @@ namespace KaLib.WinForm
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault( false );
 
-			// MVC 各クラスのインスタンスを生成。
 			var m = Activator.CreateInstance( typeDic[ "KaModel" ] ) as KaModel;
 			var v = Activator.CreateInstance( typeDic[ "KaView" ] ) as KaView;
 			var c = Activator.CreateInstance( typeDic[ "KaController" ] ) as KaController;
 			KaMvcBase.setMvc( m, v, c );
 
-			// 初期化メソッドを実行。
-			var flag = BindingFlags.InvokeMethod | BindingFlags.Instance | BindingFlags.NonPublic;
-			m.GetType().InvokeMember( "init", flag, null, m, null );
-			v.GetType().InvokeMember( "init", flag, null, v, null );
-			c.GetType().InvokeMember( "init", flag, null, c, null );
+			var mInit = m.GetType().GetMethod( "init", BindingFlags.Instance | BindingFlags.NonPublic );
+			var vInit = v.GetType().GetMethod( "init", BindingFlags.Instance | BindingFlags.NonPublic );
+			var cInit = c.GetType().GetMethod( "init", BindingFlags.Instance | BindingFlags.NonPublic );
+
+			mInit.Invoke( m, null );
+			vInit.Invoke( v, null );
+			cInit.Invoke( c, null );
 
 			Application.Run( c.ac.MainForm );
 		}
