@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace KaLib.WinForm
+namespace ka.WinForm
 {
 	/// <summary>
 	/// Windows Form アプリで MVC パターンを用いる際、<br />

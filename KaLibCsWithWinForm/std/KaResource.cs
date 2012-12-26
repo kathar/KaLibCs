@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Resources;
 using System.Windows.Forms;
 
-namespace KaLib.WinForm
+namespace ka.WinForm
 {
 	/// <summary>
 	/// リソースに関するクラス。
@@ -26,7 +26,7 @@ namespace KaLib.WinForm
 		{
 			obj = null;
 
-			if ( name == string.Empty )
+			if ( !name.KaIs() )
 			{
 				return false;
 			}
@@ -37,7 +37,7 @@ namespace KaLib.WinForm
 			var mgr = new ResourceManager( asmName + ".Properties.Resources", asm );
 
 			var tmpObj = mgr.GetObject( name );
-			if ( tmpObj == null )
+			if ( !tmpObj.KaIs() )
 			{
 				return false;
 			}

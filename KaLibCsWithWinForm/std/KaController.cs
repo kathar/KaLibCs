@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using System.Windows.Forms;
 
-namespace KaLib.WinForm
+namespace ka.WinForm
 {
 	/// <summary>
 	/// Windows Form アプリで MVC パターンで構築する際、<br />
@@ -21,7 +21,7 @@ namespace KaLib.WinForm
 			base.init();
 
 			ac = new ApplicationContext();
-			ac.MainForm = v.mainForm;
+			ac.MainForm = view.mainForm;
 		}
 	}
 }

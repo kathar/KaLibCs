@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KaLib.WinForm
+namespace ka.WinForm
 {
 	/// <summary>
 	/// 各 MVC クラスの親クラス。
 	/// </summary>
 	public class KaMvcBase
 	{
-		public static KaModel m;
-		public static KaView v;
-		public static KaController c;
+		public static KaModel model;
+		public static KaView view;
+		public static KaController controller;
 
 		/// <summary>
 		/// MVC インスタンスをセット。<br />
@@ -23,13 +23,13 @@ namespace KaLib.WinForm
 		/// <param name="view"></param>
 		/// <param name="controller"></param>
 		public static void setMvc(
-			KaModel model,
-			KaView view,
-			KaController controller )
+			KaModel m,
+			KaView v,
+			KaController c )
 		{
-			m = model;
-			v = view;
-			c = controller;
+			model = m;
+			view = v;
+			controller = c;
 		}
 
 		/// <summary>

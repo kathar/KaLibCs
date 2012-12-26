@@ -7,7 +7,7 @@
     <ProjectGuid>{5EA1849F-44BC-4B0B-9CC8-8C90273566DA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KaLib</RootNamespace>
+    <RootNamespace>ka</RootNamespace>
     <AssemblyName>KaLib</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -40,11 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="extension\KaExtensionForObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="attribute\" />
-    <Folder Include="extension\" />
     <Folder Include="std\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace KaLib.WinForm
+namespace ka.WinForm
 {
 	/// <summary>
 	/// Windows Form アプリのデフォルト値を設定する。
