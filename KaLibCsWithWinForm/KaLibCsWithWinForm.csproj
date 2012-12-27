@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="extension\KaControls.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="std\KaAppUtil.cs" />
     <Compile Include="std\KaColor.cs" />
     <Compile Include="std\KaModel.cs" />
     <Compile Include="std\KaMvcBase.cs" />

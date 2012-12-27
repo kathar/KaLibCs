@@ -42,10 +42,11 @@
   <ItemGroup>
     <Compile Include="extension\KaExtensionForObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="std\KaBasicError.cs" />
+    <Compile Include="std\KaErrorBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="attribute\" />
-    <Folder Include="std\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
