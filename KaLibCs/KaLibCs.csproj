@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,9 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="extension\KaExtensionForImage.cs" />
     <Compile Include="extension\KaExtensionForObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="std\KaBasicError.cs" />
+    <Compile Include="std\KaBitmap.cs" />
     <Compile Include="std\KaErrorBase.cs" />
   </ItemGroup>
   <ItemGroup>
