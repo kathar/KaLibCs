@@ -20,6 +20,11 @@ namespace ka
 		/// <returns></returns>
 		public static bool KaIs<T>( this T self )
 		{
+			if ( self == null )
+			{
+				return false;
+			}
+
 			var t = self.GetType();
 
 			if ( t.IsPrimitive )

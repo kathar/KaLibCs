@@ -9,14 +9,26 @@ using System.Runtime.InteropServices;
 
 namespace ka
 {
+	/// <summary>
+	/// Bitmap のバイナリデータを扱うクラス。
+	/// </summary>
 	public class KaBmpDatMgr
 	{
 		public Bitmap org { get; private set; }
 		public PixelFormat format { get; private set; }
-		public BitmapData dat { get; private set; }
-		//public byte[] buf { get; private set; }
+		public KaBitmapData dat { get; private set; }
 
-		public KaBmpDatMgr( Bitmap bmp )
+		private static readonly int pixelDatLen = 4;
+
+		/// <summary>
+		/// コンストラクタ。ピクセルフォーマットはデフォルトで ARGB を扱う。
+		/// </summary>
+		/// <remarks>
+		/// 現状、32bit の ARGB, RGB のみを扱う。
+		/// </remarks>
+		/// <param name="bmp"></param>
+		/// <param name="format"></param>
+		public KaBmpDatMgr( Bitmap bmp, PixelFormat format = PixelFormat.Format32bppArgb )
 		{
 			if ( !bmp.KaIs() )
 			{
@@ -24,22 +36,29 @@ namespace ka
 			}
 
 			org = bmp.Clone() as Bitmap;
-			format = PixelFormat.Format32bppRgb;
+			this.format = format;
 
 			var w = org.Width;
 			var h = org.Height;
-			//buf = new byte[ w * h * 4 ];
+			var buf = new byte[ w * h * pixelDatLen ];
 
-			dat = org.LockBits(
+			var tmpDat = org.LockBits(
 				new Rectangle( Point.Empty, org.Size ),
 				ImageLockMode.WriteOnly,
 				format );
 
-			//Marshal.Copy( bmpDat.Scan0, buf, 0, buf.Length );
+			Marshal.Copy( tmpDat.Scan0, buf, 0, buf.Length );
 
-			org.UnlockBits( dat );
+			org.UnlockBits( tmpDat );
+
+			dat = new KaBitmapData( buf, w, h );
 		}
 
+		/// <summary>
+		/// 特定倍率に拡大した Bitmap オブジェクトを返す。補完処理ではなく、ピクセル自体が拡大するようなもの。
+		/// </summary>
+		/// <param name="magnification"></param>
+		/// <returns></returns>
 		public virtual Bitmap magnify( int magnification )
 		{
 			if ( magnification <= 0 )
@@ -47,41 +66,39 @@ namespace ka
 				return null;
 			}
 
-			var w = org.Width;
-			var h = org.Height;
-			var newW = w * magnification;
-			var newH = h * magnification;
-			var newLen = newW * newH;
+			var w = dat.w;
+			var h = dat.h;
 
 			var newBufList = new List<byte>();
-			var pixelDat = new List<byte>();
-			var lineBuf = new List<byte>();
-
-			/*foreach ( var b in buf )
+			var newLineBufList = new List<byte>();
+			for ( var x = 0; x < w; ++x )
 			{
-				pixelDat.Add( b );
-
-				// 1pixel 分のデータが集まったら倍率の分だけ行用のバッファに格納する
-				if ( pixelDat.Count() == 4 )
+				for ( var y = 0; y < h; ++y )
 				{
-					for ( var j = 0; j < magnification; ++j )
+					// ピクセルデータを横に増やす。
+					for ( var cnt = 0; cnt < magnification; ++cnt )
 					{
-						lineBuf.AddRange( pixelDat );
+						// b, g, r, a の順に入れる
+						newLineBufList.Add( dat.b[ y, x ] );
+						newLineBufList.Add( dat.g[ y, x ] );
+						newLineBufList.Add( dat.r[ y, x ] );
+						newLineBufList.Add( dat.a[ y, x ] );
 					}
-					pixelDat = new List<byte>();
-				}
 
-				// 1line 分のデータが集まったら倍率の分だけ新しい Bitmap 生成用バッファに格納する
-				if ( lineBuf.Count() == newW )
-				{
-					for ( var j = 0; j < magnification; ++j )
+					// 1 行分溜まったら、行を増やす。
+					if( newLineBufList.Count()
+						== w * pixelDatLen * magnification )
 					{
-						newBufList.AddRange( lineBuf );
+						for ( var cnt = 0; cnt < magnification; ++cnt )
+						{
+							newBufList.AddRange( newLineBufList );
+						}
+						newLineBufList = new List<byte>();
 					}
-					lineBuf = new List<byte>();
 				}
-			}*/
+			}
 
+			// 拡大した Bitmap オブジェクトを生成する。
 			var res = new Bitmap( w * magnification, h * magnification );
 			var resDat = res.LockBits(
 				new Rectangle( Point.Empty, res.Size ),

@@ -47,6 +47,12 @@
     <Folder Include="attribute\" />
     <Folder Include="extension\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KaLibCs\KaLibCs.csproj">
+      <Project>{5ea1849f-44bc-4b0b-9cc8-8c90273566da}</Project>
+      <Name>KaLibCs</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
